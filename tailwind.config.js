@@ -1,0 +1,18 @@
+module.exports = {
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      animation: {
+        "pulse-slow": "pulse 3s linear infinite",
+        flash: "flash 0.5s linear",
+      },
+      keyframes: {
+        flash: {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0 },
+        },
+      },
+    },
+  },
+  plugins: [],
+};
