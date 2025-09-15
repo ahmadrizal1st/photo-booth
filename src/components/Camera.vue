@@ -34,68 +34,10 @@
         :class="filterClass"
       ></video>
 
-      <!-- Camera controls overlay -->
-      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-10">
-        <div class="flex justify-center items-center space-x-8">
-          <!-- Flip camera button -->
-          <button
-            @click="flipCamera"
-            class="bg-white/20 hover:bg-white/40 text-white rounded-full p-4 transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20 hover:border-white/30"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-          </button>
-
-          <!-- Capture button -->
-          <button
-            @click="$emit('take-photo')"
-            :disabled="isCountingDown"
-            class="bg-white text-black rounded-full p-7 shadow-2xl hover:bg-gray-100 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed relative border-4 border-white/20"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <!-- Ripple effect -->
-            <div class="absolute inset-0 rounded-full border-4 border-white/40 animate-ping"></div>
-          </button>
-
-          <!-- Gallery button -->
-          <button
-            @click="$emit('open-gallery')"
-            class="bg-white/20 hover:bg-white/40 text-white rounded-full p-4 transition-all duration-300 hover:scale-110 backdrop-blur-sm relative border border-white/20 hover:border-white/30"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-            </svg>
-            <!-- Photo count badge -->
-            <div v-if="photoCount > 0" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center border-2 border-white font-bold">
-              {{ photoCount }}
-            </div>
-          </button>
-        </div>
-
-        <!-- Camera status -->
-        <div class="text-center mt-6">
-          <div class="inline-flex items-center space-x-3 bg-black/60 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
-            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-            <span class="text-white/90 text-sm font-semibold">Camera Active</span>
-          </div>
-        </div>
+      <!-- Status indicator -->
+      <div v-if="!isCameraActive" class="status-indicator absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm">
+        Camera initializing...
       </div>
-    </div>
-
-    <!-- Flash effect -->
-    <div
-      v-if="showFlash"
-      class="flash-effect fixed inset-0 bg-white opacity-0 z-40"
-      :class="{'animate-flash': showFlash}"
-    ></div>
-
-    <!-- Status indicator -->
-    <div v-if="!isCameraActive" class="status-indicator absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm">
-      Camera initializing...
     </div>
   </div>
 </template>

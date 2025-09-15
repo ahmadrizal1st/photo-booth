@@ -2,13 +2,13 @@
   <div class="photo-booth-container min-h-screen py-6 px-4">
     <div class="max-w-5xl mx-auto">
       <header class="text-center mb-10">
-        <h1 class="text-5xl font-bold text-white mb-3 drop-shadow-lg">Vue Photo Booth</h1>
+        <h1 class="text-5xl font-bold text-white mb-3 drop-shadow-lg">Photo Booth</h1>
         <p class="text-white text-opacity-90 text-lg">Ambil foto dengan berbagai filter menarik</p>
       </header>
 
       <main class="space-y-8">
         <!-- Camera Component -->
-        <Camera ref="camera" />
+        <Camera ref="camera" @take-photo="handleTakePhoto" />
 
         <!-- Controls Component -->
         <Controls
@@ -73,6 +73,22 @@ export default {
       },
       set(value) {
         this.$store.commit('SET_SHOW_GALLERY', value)
+      }
+    }
+  },
+  methods: {
+    async handleTakePhoto() {
+      try {
+        // Dispatch the takePhoto action which handles countdown and capture
+        await this.$store.dispatch('takePhoto');
+
+        // Trigger flash effect after photo is captured
+        const cameraComponent = this.$refs.camera;
+        if (cameraComponent) {
+          cameraComponent.triggerFlash();
+        }
+      } catch (error) {
+        console.error('Error taking photo:', error);
       }
     }
   }
