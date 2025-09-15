@@ -7,6 +7,7 @@ export default createStore({
     isCountingDown: false,
     countdownValue: 3,
     isCameraActive: false,
+    showGallery: false,
   },
   mutations: {
     ADD_PHOTO(state, photo) {
@@ -23,6 +24,9 @@ export default createStore({
     },
     SET_CAMERA_STATUS(state, status) {
       state.isCameraActive = status;
+    },
+    SET_SHOW_GALLERY(state, status) {
+      state.showGallery = status;
     },
   },
   actions: {

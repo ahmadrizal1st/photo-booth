@@ -64,7 +64,16 @@ export default {
   data() {
     return {
       showFilters: false,
-      showGallery: false
+    }
+  },
+  computed: {
+    showGallery: {
+      get() {
+        return this.$store.state.showGallery
+      },
+      set(value) {
+        this.$store.commit('SET_SHOW_GALLERY', value)
+      }
     }
   }
 }
