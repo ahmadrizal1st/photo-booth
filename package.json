@@ -16,6 +16,8 @@
     "webcam-easy": "^1.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/eslint-parser": "^7.28.4",
     "@vitejs/plugin-vue": "^6.0.1",
     "autoprefixer": "^10.4.21",
     "eslint": "^7.32.0",
@@ -27,15 +29,14 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "browser": true
     },
     "extends": [
       "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
-    "parserOptions": {
-      "parser": "@babel/eslint-parser"
-    },
+    "parserOptions": {},
     "rules": {}
   },
   "browserslist": [
